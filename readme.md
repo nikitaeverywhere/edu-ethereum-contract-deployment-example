@@ -55,7 +55,8 @@ How to Launch This Example
 1. You will need latest [NodeJS](https://nodejs.org).
 2. Clone this repository and `cd` to it.
 3. Run `npm install`. In case of Windows, before running `npm install` do [this](https://medium.com/@PrateeshNanada/steps-to-install-testrpc-in-windows-10-96989a6cd594).
-4. Run `node deployContract` and see the result.
+4. Run TestRPC network emulator: `./node_modules/.bin/testrpc`.
+5. Run `node deployContract` and see the result.
 
 [Voting.ABI.json](Voting.ABI.json) is just an [ABI](https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI)
 of compiled contract.
