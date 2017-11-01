@@ -71,5 +71,7 @@ License
 
 [MIT](license) © [Nikita Savchenko](https://nikita.tk)
 
+---
+
 [Original tutorial](https://medium.com/@mvmurthy/full-stack-hello-world-voting-ethereum-dapp-tutorial-part-1-40d2d0d807c2)
 by [Mahesh Murthy](https://medium.com/@mvmurthy).
