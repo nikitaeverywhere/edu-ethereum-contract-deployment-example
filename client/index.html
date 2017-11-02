@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Simple Voting DApp</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css"/>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript" src="index.js"></script>
+	<script type="text/javascript" src="votingContractData.js"></script>
+	<script src="https://cdn.rawgit.com/ethereum/web3.js/1.0/dist/web3.min.js" async onload="init()"></script>
+</head>
+<body class="container">
+<h1>A Simple Hello World Voting Application</h1>
+<div class="table-responsive">
+	<table class="table table-bordered">
+		<thead>
+		<tr>
+			<th>Candidate</th>
+			<th>Votes</th>
+			<th>Action</th>
+		</tr>
+		</thead>
+		<tbody id="table"><tr><td colspan="3">Loading...</td></tr></tbody>
+	</table>
+</div>
+<label>Vote from: <input type="text" id="from" placeholder="Ethereum address"/></label>
+<div id="log"></div>
+</body>
+</html>

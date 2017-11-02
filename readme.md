@@ -8,14 +8,15 @@ This example:
 + Compiles a Smart Contract
 + Deploys a Smart Contract
 + Executes Smart Contract's methods
++ Has an UI to interact with the Smart Contract
 
 Voting process:
 + Smart Contract is deployed to Ethereum network with **a list of candidates**.
-+ Everyone in the network can vote for these candidates.
++ Everyone in the network can vote for these candidates without limitations (except of their balance).
 + Everyone in the network can check how many votes particular candidate has.
 
-Sample Output
--------------
+Preview
+-------
 
 ```text
 $ node deployContract.js
@@ -46,20 +47,24 @@ Let's vote for Nick as 0xD5F09bcF69ec2fbbAd5011Fb7E62d5B05F7d7af8...
 Successfully voted for Nick. Gas used: 28402 Transaction hash: 0xa3429fcf934f31f1c872ee2f1c66a4bba24fe0a815e1458cfb6b9be400242470
 Let's see how many votes are received for Nick...
 Nick has got 2 votes!
-Done!
+Done. Now open /client/index.html and see contract in action!
 ```
+
+![2017-11-02_135650](https://user-images.githubusercontent.com/4989256/32325004-ea174b0c-bfd5-11e7-8a36-4774b50acd20.png)
 
 How to Launch This Example
 --------------------------
 
 1. You will need latest [NodeJS](https://nodejs.org).
 2. Clone this repository and `cd` to it.
-3. Run `npm install`. In case of Windows, before running `npm install` do [this](https://medium.com/@PrateeshNanada/steps-to-install-testrpc-in-windows-10-96989a6cd594).
+3. Run `npm install`. In case of Windows, before running `npm install` do [this](https://medium.com/@PrateeshNanada/steps-to-install-testrpc-in-windows-10-96989a6cd594). Any errors in console? Google for them.
 4. Run TestRPC network emulator: `./node_modules/.bin/testrpc`.
-5. Run `node deployContract` and see the result.
+5. Run `node deployContract.js` and see the result.
+5. Open [client/index.html](client/index.html) file and play with decentralized application from UI!
 
 [Voting.ABI.json](Voting.ABI.json) is just an [ABI](https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI)
-of compiled contract.
+of compiled contract. Also, `deployContract.js` script will generate `client/votingContractData.js`
+file to access the contract in test network from the client side ([client/index.html](client/index.html)).
 
 Contributing
 ------------

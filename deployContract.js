@@ -5,7 +5,7 @@
  *     > .\node_modules\.bin\testrpc (Windows)
  *     $ ./node_modules/.bin/testrpc (*nix)
  *
- * @see https://github.com/ZitRos/edu-ethereum-web3-contract-deployment-example
+ * @see https://github.com/ZitRos/edu-ethereum-contract-deployment-example
  */
 
 const Web3 = require("web3");
@@ -15,6 +15,7 @@ const solc = require("solc");
 
 const contractToCompile = "Voting"; // .sol (in local directory)
 const listOfCandidates = ["Nick", "Edward", "John"];
+const contractDetailsOutputFile = `${ __dirname }/client/votingContractData.js`;
 
 let contractAccount; // will be assigned later
 
@@ -38,12 +39,14 @@ function compile (contractName) {
 	const compiledCode = solc.compile(contractCode);
 	const abiDefinition = JSON.parse(compiledCode.contracts[`:${ contractName }`].interface);
 	const contract = new web3.eth.Contract(abiDefinition);
+	// abiDefinition is the only thing we need to interact with the contract,
+	// and we will save it to file later
 
-	deploy(contractName, contract, compiledCode);
+	deploy(contractName, contract, compiledCode, abiDefinition);
 
 }
 
-function deploy (contractName, contract, compiledCode) {
+function deploy (contractName, contract, compiledCode, abiDefinition) {
 
 	console.log(`Preparing ${ contractName } contract to be deployed...`);
 
@@ -70,7 +73,14 @@ function deploy (contractName, contract, compiledCode) {
 				deployedContract.options.address }`
 			);
 
-			interactionTest(deployedContract);
+			fs.writeFile( // save contract info to a file to access contract data from the client
+				contractDetailsOutputFile,
+				`window.contractAddress="${ deployedContract.options.address }";\n`
+				+ `window.contractABI=${ JSON.stringify(abiDefinition) };\n`
+				+ `window.candidates=${ JSON.stringify(listOfCandidates) };\n`
+				+ `window.testAccount="${ contractAccount }";`,
+				() => interactionTest(deployedContract)
+			);
 
 		});
 
@@ -85,7 +95,9 @@ function interactionTest (contract) {
 	voteFor(listOfCandidates[0], () =>
 	checkVotes(() =>
 	voteFor(listOfCandidates[0], () =>
-	checkVotes(() => console.log("Done!"))))));
+	checkVotes(() =>
+		console.log("Done. Now open /client/index.html and see contract in action!"
+	))))));
 
 	function checkVotes (next) {
 
