@@ -39,8 +39,8 @@ function compile (contractName) {
 	const compiledCode = solc.compile(contractCode);
 	const abiDefinition = JSON.parse(compiledCode.contracts[`:${ contractName }`].interface);
 	const contract = new web3.eth.Contract(abiDefinition);
-	// abiDefinition is the only thing we need to interact with the contract,
-	// and we will save it to file later
+	// abiDefinition and contract address are the only things we need to interact with the contract,
+	// and we will save them to a file later.
 
 	deploy(contractName, contract, compiledCode, abiDefinition);
 
